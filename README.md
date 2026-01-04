@@ -25,12 +25,10 @@ Jika Anda tertarik untuk berkolaborasi dengan saya dalam proyek tertentu atau me
 - JavaScript
 
 ## Preview
-![portopolio](portopolio.png)
+
 
 ## Kontribusi
 
-Jika Anda memiliki saran untuk meningkatkan portofolio ini atau menemukan masalah, jangan ragu untuk membuka [issue](https://github.com/username/My-Portopolio-Website/issues) atau mengirimkan [pull request](https://github.com/username/My-Portopolio-Website/pulls).
 
 ---
 
-© 2024 My Portfolio. Dibuat dengan ❤️ oleh Rahmad Era Sugiarto.
