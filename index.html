@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nazwa Hemalia Putri - Portfolio</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="assets/img/icon.png" rel="icon">
+
+    <style>
+        /* =========================================
+           1. CSS RESET & VARIABLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        :root {
+            --bg-dark: #0f172a;      /* Warna Gelap Utama */
+            --bg-light: #1e293b;     /* Warna Agak Terang (Pembeda) */
+            --text-color: #fff;
+            --text-muted: #cbd5e1;
+            --main-color: #00d2ff;   /* Biru Neon */
+        }
+
+        html {
+            /* FITUR UTAMA: SCROLL SNAP */
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory; /* Wajib snap vertikal */
+            scroll-padding-top: 80px; /* Jarak untuk Header Fixed */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           2. HEADER & NAVIGATION
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(15, 23, 42, 0.95); /* Efek kaca */
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: 1px;
+        }
+
+        #nav-menu {
+            display: flex;
+        }
+
+        #nav-menu li {
+            margin-left: 30px;
+        }
+
+        #nav-menu li a {
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        #nav-menu li a:hover, 
+        #nav-menu li a.active {
+            color: var(--main-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 30px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           3. GENERAL SECTION STYLES (LAYOUT PER HALAMAN)
+           ========================================= */
+        section {
+            /* Agar pas satu layar penuh */
+            min-height: 100vh; 
+            padding: 100px 10% 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            /* FITUR SNAP: Section menempel di atas */
+            scroll-snap-align: start; 
+        }
+
+        /* WARNA SELANG-SELING (PEMBEDA PAGE) */
+        section:nth-child(odd) { /* Section Ganjil (Home, Project, Contact) */
+            background-color: var(--bg-dark);
+        }
+
+        section:nth-child(even) { /* Section Genap (About, Certificates) */
+            background-color: var(--bg-light);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .section-title span {
+            color: var(--main-color);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           4. HOME SECTION
+           ========================================= */
+        #home {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h2 {
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .home-content h2 span {
+            color: var(--main-color);
+        }
+
+        .home-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+
+        .btn-box {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--main-color);
+            color: var(--bg-dark);
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-box:hover {
+            box-shadow: 0 0 10px var(--main-color);
+            background: #fff;
+        }
+
+        .imgBox {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imgBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%; 
+            border: 2px solid var(--main-color);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a img {
+            width: 30px;
+            filter: invert(1);
+            transition: 0.3s;
+        }
+        
+        .social-icons a:hover img {
+            transform: translateY(-5px);
+        }
+
+        /* =========================================
+           5. ABOUT SECTION
+           ========================================= */
+        .about-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .about-left {
+            flex: 0 0 320px;
+            text-align: center;
+        }
+
+        .about-img-card {
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            border: 2px solid var(--main-color);
+            margin-bottom: 20px;
+        }
+
+        .about-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .about-img-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-left h3 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        .role-text {
+            color: var(--main-color);
+            font-size: 14px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .btn-cv {
+            padding: 10px 25px;
+            border: 2px solid var(--main-color);
+            border-radius: 50px;
+            color: var(--main-color);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-cv:hover {
+            background: var(--main-color);
+            color: var(--bg-dark);
+        }
+
+        .about-right {
+            flex: 1;
+        }
+
+        .about-desc p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+        }
+
+        .info-item i {
+            color: var(--main-color);
+            font-size: 20px;
+        }
+
+        /* Passion Box */
+        .passion-box {
+            background: rgba(0,0,0,0.2); /* Sedikit lebih gelap di background terang */
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--main-color);
+            margin-bottom: 40px;
+        }
+
+        .passion-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .passion-item:last-child { margin-bottom: 0; }
+        
+        .passion-item i {
+            color: var(--main-color);
+            font-size: 24px;
+            margin-top: 2px;
+        }
+
+        .passion-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .passion-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .skill-card {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            border-color: var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 35px;
+            color: var(--main-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .skill-card span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           6. PROJECT SECTION
+           ========================================= */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 2px solid var(--main-color);
+            color: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover, 
+        .filter-btn.active-filter {
+            background: var(--main-color);
+            color: var(--bg-dark);
+        }
+
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: var(--bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+        }
+
+        .portfolio-item.hide { display: none; }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--main-color);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-info { padding: 20px; }
+        .portfolio-info h4 { margin-bottom: 5px; }
+        .portfolio-info p { color: var(--main-color); font-size: 13px; text-transform: uppercase; margin-bottom: 10px; }
+        
+        .portfolio-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .portfolio-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid var(--main-color);
+            color: var(--main-color);
+            margin-right: 5px;
+            transition: 0.3s;
+        }
+
+        .portfolio-links a:hover {
+            background: var(--main-color);
+            color: var(--bg-dark);
+        }
+
+        /* =========================================
+           7. CERTIFICATES SECTION
+           ========================================= */
+        .certificate-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background: rgba(0,0,0,0.2); /* Kartu transparan gelap */
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--main-color);
+        }
+
+        .cert-img-box {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .cert-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .cert-card:hover .cert-img-box img { transform: scale(1.1); }
+
+        .cert-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cert-tags span {
+            font-size: 11px;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--main-color);
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        .btn-view {
+            margin-top: 15px;
+            width: 100%;
+            padding: 8px;
+            background: transparent;
+            border: 1px solid var(--main-color);
+            color: var(--main-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-view:hover {
+            background: var(--main-color);
+            color: var(--bg-dark);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000;
+            display: none; justify-content: center; align-items: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90vh; border: 2px solid var(--main-color); border-radius: 10px; }
+        .close-lightbox {
+            position: absolute; top: 30px; right: 30px; font-size: 40px; color: #fff; cursor: pointer;
+        }
+
+        /* =========================================
+           8. CONTACT SECTION
+           ========================================= */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+        
+        .info-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-icon {
+            width: 50px; height: 50px; background: rgba(0, 210, 255, 0.1);
+            color: var(--main-color); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-size: 24px;
+        }
+
+        .map-box {
+            width: 100%; height: 300px; border-radius: 10px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .map-box iframe { width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(90%) contrast(90%); }
+
+        .contact-form {
+            flex: 1.2;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px; }
+        
+        .input-field {
+            width: 100%; padding: 12px 15px; background: var(--bg-dark);
+            border: 1px solid #334155; border-radius: 8px; color: #fff; outline: none; transition: 0.3s;
+        }
+        .input-field:focus { border-color: var(--main-color); }
+        textarea.input-field { resize: none; height: 120px; }
+
+        .btn-send {
+            width: 100%; padding: 15px; background: var(--main-color);
+            color: var(--bg-dark); border: none; border-radius: 40px;
+            font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-send:hover { background: #fff; box-shadow: 0 0 15px var(--main-color); }
+
+        /* =========================================
+           9. RESPONSIVE
+           ========================================= */
+        @media (max-width: 991px) {
+            header { padding: 15px 5%; }
+            section { padding: 100px 5% 50px; }
+            
+            #home { flex-direction: column-reverse; gap: 40px; text-align: center; }
+            .home-content h2 { font-size: 35px; }
+            .imgBox { width: 300px; height: 300px; }
+            
+            .about-container { flex-direction: column; align-items: center; }
+            .about-left { width: 100%; }
+            .about-img-card { width: 280px; height: 350px; margin: 0 auto 20px; }
+            .info-grid { grid-template-columns: 1fr; }
+            
+            .contact-container { flex-direction: column; }
+            
+            .menu-toggle { display: block; }
+            #nav-menu {
+                position: absolute; top: 100%; right: -100%; width: 100%; height: 100vh;
+                background: var(--bg-dark); flex-direction: column; align-items: center; padding-top: 50px;
+                transition: 0.4s ease; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            #nav-menu.show { right: 0; }
+            #nav-menu li { margin: 20px 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#home" class="logo">My Portfolio</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class='bx bx-menu'></i>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <section id="home">
+        <div class="home-content">
+            <h2>Hello! I'm <span>Nazwa</span></h2>
+            <p>I am a Informatics Engineering student at UIN SGD with a strong passion for IT and digital solutions. I thrive in collaborative team settings and adapt quickly to new challenges.</p>
+            <a href="#contact" class="btn-box">Hire Me</a>
+            
+            <div class="social-icons">
+                <a href="https://www.instagram.com/nzwa_ptr03/" target="_blank"><img src="assets/img/instagram.png" alt="IG"/></a>
+                <a href="https://www.linkedin.com/in/nazwa-hemalia-putri-270322248" target="_blank"><img src="assets/img/linkedin.png" alt="IN"/></a>
+                <a href="https://github.com/Nzwaaa" target="_blank"><img src="assets/img/github.png" alt="GH"/></a>
+            </div>
+        </div>
+        <div class="imgBox">
+            <img src="assets/img/foto.png" alt="Nazwa Profile">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>About <span>Me</span></h2>
+        </div>
+        <div class="about-container">
+            <div class="about-left">
+                <div class="about-img-card">
+                    <img src="assets/img/nzw.jpeg" alt="About Nazwa">
+                </div>
+                <h3>Nazwa Hemalia Putri</h3>
+                <span class="role-text">Informatics Engineering Student</span>
+                <a href="https://drive.google.com/file/d/1lDGtBss12tOPYC1LOpj_tJLJ9irpOowO/view?usp=sharing" target="_blank" class="btn-cv">Download CV <i class='bx bx-download'></i></a>
+            </div>
+
+            <div class="about-right">
+                <div class="about-desc">
+                    <p>A passionate Computer Engineering - IT student at UIN Bandung with a strong drive for technology and innovation. Originally from Garut, now exploring the tech world in Bandung. I am fascinated by the Internet of Things (IoT) and always eager to learn new things.</p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item"><i class='bx bxs-graduation'></i><span>UIN Sunan Gunung Djati</span></div>
+                    <div class="info-item"><i class='bx bxs-map'></i><span>Bandung, Indonesia</span></div>
+                    <div class="info-item"><i class='bx bxs-envelope'></i><span>naf50951@gmail.com</span></div>
+                    <div class="info-item"><i class='bx bxs-flag-alt'></i><span>Indonesian</span></div>
+                </div>
+
+                <div class="passion-box">
+                    <div class="passion-item">
+                        <i class='bx bx-code-alt'></i>
+                        <div><h4>Tech Enthusiast</h4><p>Exploring new technologies & coding.</p></div>
+                    </div>
+                    <div class="passion-item">
+                        <i class='bx bx-group'></i>
+                        <div><h4>Leadership</h4><p>Active in organizations & teamwork.</p></div>
+                    </div>
+                </div>
+
+                <h3>My <span>Skills</span></h3>
+                <br>
+                <div class="skills-grid">
+                    <div class="skill-card"><i class='bx bxl-html5'></i><span>HTML</span></div>
+                    <div class="skill-card"><i class='bx bxl-css3'></i><span>CSS</span></div>
+                    <div class="skill-card"><i class='bx bxl-javascript'></i><span>JS</span></div>
+                    <div class="skill-card"><i class='bx bxl-python'></i><span>Python</span></div>
+                    <div class="skill-card"><i class='bx bxl-android'></i><span>Android</span></div>
+                    <div class="skill-card"><i class='bx bxs-data'></i><span>MySQL</span></div>
+                    <div class="skill-card"><i class='bx bxl-git'></i><span>Git</span></div>
+                    <div class="skill-card"><i class='bx bxl-figma'></i><span>Figma</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project">
+        <div class="section-title">
+            <h2>My <span>Projects</span></h2>
+            <p>Here are some of the projects I've worked on.</p>
+        </div>
+
+        <div class="portfolio-filter">
+            <button class="filter-btn active-filter" onclick="filterProjects('all')">All</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Web</button>
+            <button class="filter-btn" onclick="filterProjects('android')">Android</button>
+        </div>
+
+        <div class="portfolio-container">
+            <div class="portfolio-item web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/layanan_desa.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>Layanan Desa</h4>
+                    <p>Web Development</p>
+                    <div class="portfolio-desc">Pengembangan frontend website layanan desa dengan fitur berita aktual.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/layanan_desa.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/SifaMutiasyaa/WebsiteLayananDesa" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item android">
+                <div class="portfolio-img"><img src="assets/img/portfolio/maha.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>MAHA</h4>
+                    <p>Android Development</p>
+                    <div class="portfolio-desc">Aplikasi mobile My Assistent Health Apps. UI/UX dan optimasi performa.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/maha.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/Ryhnslmn13/MAHA" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/paw.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>PAW (PWA)</h4>
+                    <p>Web Development</p>
+                    <div class="portfolio-desc">Progressive Web App (PWA) untuk pengalaman mendekati native.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/paw.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/Syidwan/PAW" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+             <div class="portfolio-item android">
+                <div class="portfolio-img"><img src="assets/img/portfolio/yumify.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>Yumify</h4>
+                    <p>Android (Backend)</p>
+                    <div class="portfolio-desc">Pengembangan backend, manajemen data, dan API Yumify.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/yumify.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/Nzwaaa/Yumify" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+             <div class="portfolio-item android">
+                <div class="portfolio-img"><img src="assets/img/portfolio/bangkit.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>Story At Bangkit</h4>
+                    <p>Android Development</p>
+                    <div class="portfolio-desc">Pengembangan UI/UX dan fitur aplikasi mobile dengan API.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/bangkit.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/Nzwaaa/Yumify/tree/master/app" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+             <div class="portfolio-item web">
+                <div class="portfolio-img"><img src="assets/img/portfolio/makanan.png" alt=""></div>
+                <div class="portfolio-info">
+                    <h4>Menu Makanan</h4>
+                    <p>Web (Fullstack)</p>
+                    <div class="portfolio-desc">Merancang sistem backend dan frontend interaktif.</div>
+                    <div class="portfolio-links">
+                        <a href="assets/img/portfolio/makanan.png" target="_blank"><i class='bx bx-zoom-in'></i></a>
+                        <a href="https://github.com/Nzwaaa/UAS-PRAK-WEB" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <div class="section-title">
+            <h2>My <span>Certificates</span></h2>
+            <p>Achievements & Professional Development</p>
+        </div>
+
+        <div class="certificate-container">
+            <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/memulai_pemrograman_dg_java.png" alt="Web Dev"></div>
+                <div class="cert-info">
+                    <h4>Memulai Pemrograman dengan Java</h4>
+                    <div class="cert-meta"><span>Dicoding</span><span>June 2023</span></div>
+                    <div class="cert-tags"><span>Frontend</span><span>HTML/CSS</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/web-development-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/kotlin.png" alt="Android"></div>
+                <div class="cert-info">
+                    <h4>Memulai Pemrograman dengan Kotlin</h4>
+                    <div class="cert-meta"><span>Bangkit</span><span>Aug 2023</span></div>
+                    <div class="cert-tags"><span>Kotlin</span><span>Mobile</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/android-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+             <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/pyhton.png" alt="Cloud"></div>
+                <div class="cert-info">
+                    <h4>Memulai Pemrograman dengan Pyhton</h4>
+                    <div class="cert-meta"><span>AWS</span><span>Sept 2023</span></div>
+                    <div class="cert-tags"><span>Cloud</span><span>Server</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/cloud-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+             <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/fundamental_mbl.png" alt="Hackathon"></div>
+                <div class="cert-info">
+                    <h4>Belajar Fundamental Aplikasi Android</h4>
+                    <div class="cert-meta"><span>1st Place</span><span>Nov 2023</span></div>
+                    <div class="cert-tags"><span>Competition</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/hackathon-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+             <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/intermediet_mbl.png" alt="React"></div>
+                <div class="cert-info">
+                    <h4>Belajar Pengembangan Aplikasi Android Intermediate</h4>
+                    <div class="cert-meta"><span>Udemy</span><span>Dec 2023</span></div>
+                    <div class="cert-tags"><span>ReactJS</span><span>JS</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/react-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+             <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/ml_mbl.png" alt="Bangkit"></div>
+                <div class="cert-info">
+                    <h4>Belajar Penerapan Machine Learning untuk Android</h4>
+                    <div class="cert-meta"><span>Google</span><span>July 2023</span></div>
+                    <div class="cert-tags"><span>Distinction</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/bangkit-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/aws.png" alt="Bangkit"></div>
+                <div class="cert-info">
+                    <h4>Belajar Dasar Cloud dan Gen AI di AWS</h4>
+                    <div class="cert-meta"><span>Google</span><span>July 2023</span></div>
+                    <div class="cert-tags"><span>Distinction</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/bangkit-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+              <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/js.png" alt="Cloud"></div>
+                <div class="cert-info">
+                    <h4>Belajar Dasar Pemrograman JavaScript</h4>
+                    <div class="cert-meta"><span>AWS</span><span>Sept 2023</span></div>
+                    <div class="cert-tags"><span>Cloud</span><span>Server</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/cloud-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-img-box"><img src="assets/img/dasar_ai.png" alt="Cloud"></div>
+                <div class="cert-info">
+                    <h4>Belajar Dasar AI</h4>
+                    <div class="cert-meta"><span>AWS</span><span>Sept 2023</span></div>
+                    <div class="cert-tags"><span>Cloud</span><span>Server</span></div>
+                    <button class="btn-view" onclick="openLightbox('assets/img/certificates/cloud-full.jpg')">View Certificate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact <span>Me</span></h2>
+            <p>Get in touch with me via WhatsApp</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-box">
+                    <div class="info-icon"><i class='bx bx-map'></i></div>
+                    <div class="info-text">
+                        <h4>Address</h4><p>Jalan A.H Nasution No. 105, Cipadung, Cibiru, Kota Bandung</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class='bx bx-envelope'></i></div>
+                    <div class="info-text">
+                        <h4>Email</h4><p>naf50951@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class='bx bx-phone'></i></div>
+                    <div class="info-text">
+                        <h4>Phone</h4><p>+62 812-1442-4344</p>
+                    </div>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.6729373981884!2d107.71458807584149!3d-6.929656767832863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c3258aa58189%3A0xd14df5a9a46a6774!2sUIN%20Sunan%20Gunung%20Djati%20Bandung!5e0!3m2!1sid!2sid!4v1703649234891!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 style="margin-bottom: 20px;">Send Message</h3>
+                <form id="whatsappForm">
+                    <div class="input-group">
+                        <label>Your Name</label>
+                        <input type="text" id="name" class="input-field" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Your Contact Number</label>
+                        <input type="number" id="phone" class="input-field" placeholder="Enter your number" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Your Email</label>
+                        <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea id="message" class="input-field" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="button" class="btn-send" onclick="gotowhatsapp()">Send to WhatsApp <i class='bx bxl-whatsapp'></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">×</span>
+        <img id="lightbox-img" src="" alt="Certificate Full">
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        // 1. SETUP SCROLL REVEAL (Animasi Masuk)
+        ScrollReveal({ 
+            reset: true, // Animasi ulang saat scroll atas/bawah
+            distance: '80px',
+            duration: 2000,
+            delay: 200
+        });
+
+        // Animasi per elemen
+        ScrollReveal().reveal('.home-content, .section-title', { origin: 'top' });
+        ScrollReveal().reveal('.home-img, .skills-grid, .portfolio-container, .certificate-container, .contact-form', { origin: 'bottom' });
+        ScrollReveal().reveal('.home-content h2, .about-img-card', { origin: 'left' });
+        ScrollReveal().reveal('.home-content p, .about-right, .contact-info', { origin: 'right' });
+
+
+        // 2. Scrollspy & Header Active Link
+        let sections = document.querySelectorAll('section');
+        let navLinks = document.querySelectorAll('header ul li a');
+
+        window.onscroll = () => {
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('header ul li a[href*=' + id + ']').classList.add('active');
+                    });
+                }
+            });
+
+            // Tutup menu mobile saat scroll
+            let menu = document.getElementById("nav-menu");
+            let toggleBtn = document.querySelector(".menu-toggle i");
+            menu.classList.remove("show");
+            toggleBtn.classList.replace("bx-x", "bx-menu");
+        };
+
+        // 3. Toggle Hamburger Menu
+        function toggleMenu() {
+            const menu = document.getElementById("nav-menu");
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            menu.classList.toggle("show");
+            if(menu.classList.contains("show")){
+                toggleBtn.classList.replace("bx-menu", "bx-x");
+            } else {
+                toggleBtn.classList.replace("bx-x", "bx-menu");
+            }
+        }
+
+        // 4. Filter Project
+        function filterProjects(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active-filter');
+                if (btn.innerText.toLowerCase() === category || (category === 'all' && btn.innerText === 'All')) {
+                    btn.classList.add('active-filter');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.classList.remove('hide');
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                }
+            });
+        }
+
+        // 5. Lightbox Certificate
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 6. WhatsApp Form
+        function gotowhatsapp() {
+            var name = document.getElementById("name").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var message = document.getElementById("message").value.trim();
+
+            if (name === "" || phone === "" || email === "" || message === "") {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            var textMessage = 
+                "*New Message from Portfolio Website* %0a%0a" +
+                "👤 *Name:* " + encodeURIComponent(name) + "%0a" +
+                "📱 *Phone:* " + encodeURIComponent(phone) + "%0a" +
+                "📧 *Email:* " + encodeURIComponent(email) + "%0a" +
+                "📝 *Message:* %0a" + encodeURIComponent(message);
+
+            window.open("https://wa.me/6281214424344?text=" + textMessage, '_blank').focus();
+        }
+    </script>
+</body>
+</html>
